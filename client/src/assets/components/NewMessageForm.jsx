@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+// import { useEffect } from "react";
 
 export default function NewMessageForm() {
   const [formValues, setFormValues] = useState({
@@ -8,23 +8,23 @@ export default function NewMessageForm() {
     message: "",
   });
 
-  const [categories, setCategories] = useState([
-    {
-      id: 1,
-      category_name: "test",
-    },
-  ]);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    setCategories(getCategories());
+    async function getCategories() {
+      const response = await fetch(`http://localhost:1212/categories`);
+      let result = await response.json();
+      setCategories(result);
+    }
+    getCategories();
   }, []);
 
-  async function getCategories() {
-    const response = await fetch(`http://localhost:1212/categories`);
-    let result = await response.json();
-    console.log(result);
-    return result;
-  }
+  // might not need
+  //   function handleForm(event) {
+  //     setFormValues({
+  //       ...formValues,
+  //       [event.target.name]: event.target.value,
+  //     });
 
   return (
     <form>
@@ -35,11 +35,26 @@ export default function NewMessageForm() {
           {categories &&
             categories.map((category) => (
               <option key={category.id} value={category.id}>
-                {category.name}
+                {category.category_name}
               </option>
             ))}
         </select>
       </label>
+      {/* <label htmlFor="title">Title</label>
+      <input
+        type="text"
+        id="title"
+        name="title"
+        value={formValues.title}
+        onChange={handleForm}
+      />
+      <input
+        type="text"
+        id="message"
+        name="message"
+        value={formValues.message}
+        onChange={handleForm}
+      /> */}
     </form>
   );
 }
