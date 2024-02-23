@@ -17,9 +17,10 @@ await db.query(`CREATE TABLE IF NOT EXISTS categories (
 
 await db.query(`CREATE TABLE IF NOT EXISTS messages (
     id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
     message TEXT,
     time TIMESTAMP,
-    user_id INT,cd
+    user_id INT,
     FOREIGN KEY (user_id) REFERENCES users(id),
     category_id INT,
     FOREIGN KEY (category_id) REFERENCES categories(id)
@@ -33,25 +34,23 @@ await db.query(`CREATE TABLE IF NOT EXISTS messages (
 // await db.query(
 //   `INSERT INTO categories (category_name) VALUES ('water sports')`
 // );
-// await db.query(
-//   `INSERT INTO categories (category_name) VALUES ('athletics sports')`
-// );
+// await db.query(`INSERT INTO categories (category_name) VALUES ('athletics')`);
 // await db.query(
 //   `INSERT INTO categories (category_name) VALUES ('winter sports')`
 // );
 
 // await db.query(
-//   `INSERT INTO messages (message, time, user_id, category_id) VALUES ('test0', '2020-02-20 20:20:20', 1, 1)`
+//   `INSERT INTO messages (title, message, time, user_id, category_id) VALUES ('messageTitle', 'test0', '2020-02-20 20:20:20', 1, 1)`
 // );
 // await db.query(
-//   `INSERT INTO messages (message, time, user_id, category_id) VALUES ('test1', '2021-03-02 09:30:30', 2, 1)`
+//   `INSERT INTO messages (title, message, time, user_id, category_id) VALUES ('messageTitle', 'test1', '2021-03-02 09:30:30', 2, 1)`
 // );
 // await db.query(
-//   `INSERT INTO messages (message, time, user_id, category_id) VALUES ('test2', '2024-06-18 22:10:00', 3, 1)`
+//   `INSERT INTO messages (title, message, time, user_id, category_id) VALUES ('messageTitle', 'test2', '2024-06-18 22:10:00', 3, 1)`
 // );
 // await db.query(
-//   `INSERT INTO messages (message, time, user_id, category_id) VALUES ('test3', '2021-08-10 10:20:45', 1, 3)`
+//   `INSERT INTO messages (title, message, time, user_id, category_id) VALUES ('messageTitle', 'test3', '2021-08-10 10:20:45', 1, 3)`
 // );
 // await db.query(
-//   `INSERT INTO messages (message, time, user_id, category_id) VALUES ('test4', '2023-12-25 12:20:20', 2, 3)`
+//   `INSERT INTO messages (title, message, time, user_id, category_id) VALUES ('messageTitle', 'test4', '2023-12-25 12:20:20', 2, 3)`
 // );

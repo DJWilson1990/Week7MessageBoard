@@ -79,8 +79,9 @@ app.get("/messages", async (request, response) => {
 app.post("/messages", async (request, response) => {
   try {
     const result = await db.query(
-      `INSERT INTO messages (message, time, user_id, category_id) VALUES ($1, $2, $3, $4) RETURNING *`,
+      `INSERT INTO messages (title, message, time, user_id, category_id) VALUES ($1, $2, $3, $4, $5) RETURNING *`,
       [
+        request.body.title,
         request.body.message,
         request.body.time,
         request.body.user_id,
