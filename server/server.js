@@ -9,7 +9,7 @@ import cors from "cors";
 app.use(cors());
 
 import pg from "pg";
-// const dbConnectionString = process.env.Database_URL;
+
 const db = new pg.Pool({ connectionString: process.env.Database_URL });
 
 let PORT = 1212;
