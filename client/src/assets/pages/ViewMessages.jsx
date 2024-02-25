@@ -7,7 +7,9 @@ export default function ViewMessages() {
 
   useEffect(() => {
     async function getMessages() {
-      const response = await fetch(`http://localhost:1212/messages`);
+      const response = await fetch(
+        `https://week7messageboard.onrender.com/messages`
+      );
       let result = await response.json();
       setMessages(result);
     }
@@ -16,7 +18,9 @@ export default function ViewMessages() {
 
   useEffect(() => {
     async function getCategories() {
-      const response = await fetch(`http://localhost:1212/categories`);
+      const response = await fetch(
+        `https://week7messageboard.onrender.com/categories`
+      );
       let result = await response.json();
       setCategories(result);
     }
@@ -31,7 +35,8 @@ export default function ViewMessages() {
 
   async function getCategoriesAsync(category_id) {
     const response = await fetch(
-      `http://localhost:1212/messages?category_id=` + category_id
+      `https://week7messageboard.onrender.com/messages?category_id=` +
+        category_id
     );
     let result = await response.json();
     setMessages(result);

@@ -15,7 +15,10 @@ export default function Login() {
   async function handleSubmit(event) {
     event.preventDefault();
     const response = await fetch(
-      `http://localhost:1212/users?username=` + searchParams.get("username")
+      // http://localhost:1212
+
+      `https://week7messageboard.onrender.com/users?username=` +
+        searchParams.get("username")
     );
     let result = await response.json();
     console.log(result);

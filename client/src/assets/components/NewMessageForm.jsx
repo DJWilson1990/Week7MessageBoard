@@ -16,7 +16,9 @@ export default function NewMessageForm() {
 
   useEffect(() => {
     async function getCategories() {
-      const response = await fetch(`http://localhost:1212/categories`);
+      const response = await fetch(
+        `https://week7messageboard.onrender.com/categories`
+      );
       let result = await response.json();
       setCategories(result);
     }
@@ -47,14 +49,17 @@ export default function NewMessageForm() {
       time: "2024-02-25 19:32:00",
     };
     try {
-      const response = await fetch(`http://localhost:1212/messages`, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(record),
-      });
+      const response = await fetch(
+        `https://week7messageboard.onrender.com/messages`,
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(record),
+        }
+      );
 
       if (response.ok) {
         const data = await response.json();

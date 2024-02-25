@@ -6,7 +6,9 @@ export default function Categories() {
 
   useEffect(() => {
     async function getCategories() {
-      const response = await fetch(`http://localhost:1212/categories`);
+      const response = await fetch(
+        `https://week7messageboard.onrender.com/categories`
+      );
       let result = await response.json();
       setCategories(result);
     }
@@ -24,14 +26,17 @@ export default function Categories() {
   async function handleSubmit(event) {
     event.preventDefault();
     try {
-      const response = await fetch(`http://localhost:1212/categories`, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        `https://week7messageboard.onrender.com/categories`,
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
       if (response.ok) {
         const data = await response.json();
         console.log("Response data:", data);
