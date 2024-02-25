@@ -1,12 +1,14 @@
+import "./MessageView.css";
+
 export default function MessageView(props) {
   console.log(props);
   return (
     <div className="message-view">
-      <h1>{props.props.title}</h1>
-      <h3>{props.props.category_name}</h3>
-      <h4>{props.props.user_name}</h4>
-      <p>{props.props.message}</p>
-      <p>{props.props.time}</p>
+      <p className="title">Title: {props.props.title}</p>
+      <p className="category">Category: {props.props.category_name}</p>
+      <p className="user_name">Username: {props.props.user_name}</p>
+      <p className="message">Message: {props.props.message}</p>
+      <p className="time">Time: {props.props.time}</p>
     </div>
   );
 }

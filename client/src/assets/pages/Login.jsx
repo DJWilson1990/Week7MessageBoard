@@ -29,6 +29,7 @@ export default function Login() {
     console.log(result);
     if (result.length > 0) {
       loggedInUser.user_name = result[0].user_name;
+      loggedInUser.user_id = result[0].id;
       console.log(loggedInUser);
     }
   }

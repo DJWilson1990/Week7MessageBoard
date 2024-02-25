@@ -1,14 +1,18 @@
-import { useState, useEffect } from "react";
-// import { useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { LoggedInUser } from "./LoggedInUser";
+import "./NewMessageForm.css";
 
 export default function NewMessageForm() {
   const [formData, setFormData] = useState({
     title: "",
     category_id: 0,
+    user_id: 0,
     message: "",
   });
 
   const [categories, setCategories] = useState([]);
+
+  const loggedInUser = useContext(LoggedInUser);
 
   useEffect(() => {
     async function getCategories() {
@@ -29,6 +33,10 @@ export default function NewMessageForm() {
 
   async function handleSubmit(event) {
     event.preventDefault();
+    setFormData((prevData) => ({
+      ...prevData,
+      user_id: loggedInUser.user_id,
+    }));
     console.log("Form data submitted:", formData);
     try {
       const response = await fetch(`http://localhost:1212/messages`, {
@@ -52,7 +60,7 @@ export default function NewMessageForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="form-container">
       <label>
         Category:
         <select name="category_id" onChange={handleChange}>
@@ -73,6 +81,7 @@ export default function NewMessageForm() {
         value={formData.title}
         onChange={handleChange}
       />
+      <label htmlFor="message">Message</label>
       <input
         type="text"
         id="message"

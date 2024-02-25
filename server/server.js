@@ -74,10 +74,14 @@ app.post("/categories", async (request, response) => {
 
 // messages
 app.get("/messages", async (request, response) => {
+  const searchParams = new URLSearchParams(request.query);
+  const category_id = searchParams.get("category_id");
   try {
-    const result = await db.query(
-      `SELECT * FROM messages AS m INNER JOIN categories AS c ON m.category_id = c.id INNER JOIN users AS u ON m.user_id = u.id`
-    );
+    let queryString = `SELECT * FROM messages AS m INNER JOIN categories AS c ON m.category_id = c.id INNER JOIN users AS u ON m.user_id = u.id`;
+    if (category_id) {
+      queryString = queryString + ` WHERE category_id = '` + category_id + `'`;
+    }
+    const result = await db.query(queryString);
     response.json(result.rows);
   } catch (err) {
     response.json({ error: err.message });

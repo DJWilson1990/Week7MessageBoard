@@ -1,0 +1,31 @@
+.message-page-title,
+form,
+label,
+select,
+input,
+button {
+  margin: 10px;
+}
+
+select,
+input,
+button {
+  border-radius: 10px;
+  border: 1px solid white;
+}
+
+button {
+  height: 30px;
+}
+
+button:hover {
+  color: rgb(238, 171, 105);
+  border: 1px solid rgb(238, 171, 105);
+  cursor: pointer;
+}
+
+.form-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}

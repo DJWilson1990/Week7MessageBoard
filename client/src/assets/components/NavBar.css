@@ -1,0 +1,16 @@
+.nav-container {
+  background-color: rgb(53, 52, 52);
+  height: 10vh;
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  background-color: rgb(53, 52, 52);
+  text-decoration: none;
+  margin-left: 20px;
+}
+
+.nav-link:hover {
+  color: rgb(238, 171, 105);
+}
