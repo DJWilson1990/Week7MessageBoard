@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 // import { useEffect } from "react";
 
 export default function NewMessageForm() {
-  const [formValues, setFormValues] = useState({
+  const [formData, setFormData] = useState({
     title: "",
-    category: "",
+    category_id: 0,
     message: "",
   });
 
@@ -19,18 +19,43 @@ export default function NewMessageForm() {
     getCategories();
   }, []);
 
-  // might not need
-  //   function handleForm(event) {
-  //     setFormValues({
-  //       ...formValues,
-  //       [event.target.name]: event.target.value,
-  //     });
+  function handleChange(event) {
+    const { name, value } = event.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  }
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    console.log("Form data submitted:", formData);
+    try {
+      const response = await fetch(`http://localhost:1212/messages`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Response data:", data);
+      } else {
+        console.error("Error:", response.status, response.statusText);
+      }
+    } catch (error) {
+      console.error("Fetch error:", error);
+    }
+  }
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <label>
         Category:
-        <select>
+        <select name="category_id" onChange={handleChange}>
           <option value="">Select...</option>
           {categories &&
             categories.map((category) => (
@@ -40,21 +65,22 @@ export default function NewMessageForm() {
             ))}
         </select>
       </label>
-      {/* <label htmlFor="title">Title</label>
+      <label htmlFor="title">Title</label>
       <input
         type="text"
         id="title"
         name="title"
-        value={formValues.title}
-        onChange={handleForm}
+        value={formData.title}
+        onChange={handleChange}
       />
       <input
         type="text"
         id="message"
         name="message"
-        value={formValues.message}
-        onChange={handleForm}
-      /> */}
+        value={formData.message}
+        onChange={handleChange}
+      />
+      <button type="submit">Submit</button>
     </form>
   );
 }

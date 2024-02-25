@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useEffect } from "react";
+// import { useState } from "react";
+// import { useEffect } from "react";
 import NewMessageForm from "../components/NewMessageForm";
 
 export default function Post() {

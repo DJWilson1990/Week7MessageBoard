@@ -24,8 +24,14 @@ app.get("/", (request, response) => {
 
 // users
 app.get("/users", async (request, response) => {
+  const searchParams = new URLSearchParams(request.query);
+  const username = searchParams.get("username");
   try {
-    const result = await db.query(`SELECT * FROM users`);
+    let queryString = `SELECT * FROM users`;
+    if (username) {
+      queryString = queryString + ` WHERE user_name = '` + username + `'`;
+    }
+    const result = await db.query(queryString);
     response.json(result.rows);
   } catch (err) {
     response.json({ error: err.message });
@@ -69,7 +75,9 @@ app.post("/categories", async (request, response) => {
 // messages
 app.get("/messages", async (request, response) => {
   try {
-    const result = await db.query(`SELECT * FROM messages`);
+    const result = await db.query(
+      `SELECT * FROM messages AS m INNER JOIN categories AS c ON m.category_id = c.id INNER JOIN users AS u ON m.user_id = u.id`
+    );
     response.json(result.rows);
   } catch (err) {
     response.json({ error: err.message });

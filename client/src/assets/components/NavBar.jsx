@@ -12,6 +12,9 @@ export default function NavBar() {
       <Link className="nav-link" to="/messages">
         Messages
       </Link>
+      <Link className="nav-link" to="/login">
+        Log In
+      </Link>
     </nav>
   );
 }
