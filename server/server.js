@@ -41,8 +41,8 @@ app.get("/users", async (request, response) => {
 app.post("/users", async (request, response) => {
   try {
     const result = await db.query(
-      `INSERT INTO users (user_name) VALUES ($1) RETURNING *`,
-      [request.body.user_name]
+      `INSERT INTO users (user_name, first_name, last_name) VALUES ($1, $2, $3) RETURNING *`,
+      [request.body.user_name, request.body.first_name, request.body.last_name]
     );
     response.json(result);
   } catch (err) {

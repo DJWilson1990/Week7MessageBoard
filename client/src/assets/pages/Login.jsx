@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 import { LoggedInUser } from "../components/LoggedInUser";
 
 export default function Login() {
@@ -27,16 +27,21 @@ export default function Login() {
   }
 
   return (
-    <form className="login-form" onSubmit={handleSubmit}>
-      <label htmlFor="username">Username</label>
-      <input
-        type="text"
-        name="username"
-        id="username"
-        onChange={handleChange}
-        value={searchParams.username}
-      />
-      <button type="submit">Log In</button>
-    </form>
+    <div>
+      <p>
+        Sign in or <Link to="/registration">Register account</Link>
+      </p>
+      <form className="login-form" onSubmit={handleSubmit}>
+        <label htmlFor="username">Username</label>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          onChange={handleChange}
+          value={searchParams.username}
+        />
+        <button type="submit">Log In</button>
+      </form>
+    </div>
   );
 }

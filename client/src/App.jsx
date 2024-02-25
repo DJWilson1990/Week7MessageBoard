@@ -5,6 +5,7 @@ import Home from "./assets/pages/Home";
 import Post from "./assets/pages/Post";
 import ViewMessages from "./assets/pages/ViewMessages";
 import Login from "./assets/pages/Login";
+import Registration from "./assets/pages/Registration";
 
 export default function App() {
   let loggedInUser = {};
@@ -18,6 +19,7 @@ export default function App() {
         <Route path="/post" element={<Post />} />
         <Route path="/messages" element={<ViewMessages />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/registration" element={<Registration />} />
       </Routes>
     </div>
   );

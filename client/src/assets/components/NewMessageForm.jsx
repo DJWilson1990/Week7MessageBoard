@@ -89,8 +89,7 @@ export default function NewMessageForm() {
         onChange={handleChange}
       />
       <label htmlFor="message">Message</label>
-      <input
-        type="text"
+      <textarea
         id="message"
         name="message"
         value={formData.message}

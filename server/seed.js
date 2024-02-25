@@ -7,7 +7,9 @@ const db = new pg.Pool({ connectionString: process.env.Database_URL });
 
 await db.query(`CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
-    user_name VARCHAR(255) NOT NULL
+    user_name VARCHAR(255) NOT NULL,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL
 )`);
 
 await db.query(`CREATE TABLE IF NOT EXISTS categories (
