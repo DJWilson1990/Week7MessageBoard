@@ -53,7 +53,9 @@ app.post("/users", async (request, response) => {
 // categories
 app.get("/categories", async (request, response) => {
   try {
-    const result = await db.query(`SELECT * FROM categories`);
+    const result = await db.query(
+      `SELECT * FROM categories ORDER BY category_name`
+    );
     response.json(result.rows);
   } catch (err) {
     response.json({ error: err.message });

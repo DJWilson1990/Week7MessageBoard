@@ -42,7 +42,8 @@ export default function NewMessageForm() {
       title: formData.title,
       message: formData.message,
       category_id: formData.category_id,
-      user_id: loggedInUser.user_id,
+      user_id: 6,
+      // user_id: loggedInUser.user_id,
       time: "2024-02-25 19:32:00",
     };
     try {
