@@ -38,6 +38,13 @@ export default function NewMessageForm() {
       user_id: loggedInUser.user_id,
     }));
     console.log("Form data submitted:", formData);
+    const record = {
+      title: formData.title,
+      message: formData.message,
+      category_id: formData.category_id,
+      user_id: loggedInUser.user_id,
+      time: "2024-02-25 19:32:00",
+    };
     try {
       const response = await fetch(`http://localhost:1212/messages`, {
         method: "POST",
@@ -45,7 +52,7 @@ export default function NewMessageForm() {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(record),
       });
 
       if (response.ok) {

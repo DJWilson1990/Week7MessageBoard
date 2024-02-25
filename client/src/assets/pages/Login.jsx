@@ -12,14 +12,6 @@ export default function Login() {
     setSearchParams({ username: event.target.value });
   };
 
-  //   function handleChange(event) {
-  //     const { name, value } = event.target;
-  //     setFormData((prevData) => ({
-  //       ...prevData,
-  //       [name]: value,
-  //     }));
-  //   }
-
   async function handleSubmit(event) {
     event.preventDefault();
     const response = await fetch(
